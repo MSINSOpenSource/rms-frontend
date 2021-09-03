@@ -1,7 +1,8 @@
 import React from "react";
+import mahakavachLogo from "../../Common/mahakavach/mahakavachLogo.jpg";
 import LanguageSelector from "./LanguageSelector";
 
-const img = "https://cdn.coronasafe.network/black-logo.svg";
+const img = mahakavachLogo;
 const TopBar = () => {
   return (
     <div className="bg-white shadow-md">
