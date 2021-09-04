@@ -81,7 +81,7 @@ const LoginPage = (props: any) => {
         } else if (res && statusCode === 200) {
           localStorage.setItem("care_access_token", res.access);
           localStorage.setItem("care_refresh_token", res.refresh);
-          navigate("/facility");
+          navigate("/assets");
           window.location.reload();
         }
       });
