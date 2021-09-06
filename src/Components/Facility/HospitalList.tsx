@@ -370,12 +370,12 @@ const HospitalListPage = (props: any) => {
                     </a>
                   </div>
                   <span className="inline-flex rounded-md shadow-sm">
-                    <button
+                    {/* <button
                       className="ml-2 md:ml-0 inline-flex items-center px-3 py-2 border border-primary-500 text-sm leading-4 font-medium rounded-md text-primary-700 bg-white hover:text-primary-500 focus:outline-none focus:border-primary-300 focus:shadow-outline-blue active:text-primary-800 active:bg-gray-50 transition ease-in-out duration-150 hover:shadow mr-5"
                       onClick={(_) => setModalFor(facility.id)}
                     >
                       <i className="far fa-comment-dots mr-1"></i> Notify
-                    </button>
+                    </button> */}
                     <Modal
                       open={modalFor === facility.id}
                       onClose={(_) => setModalFor(undefined)}
@@ -421,9 +421,11 @@ const HospitalListPage = (props: any) => {
                     <button
                       type="button"
                       className="inline-flex items-center px-3 py-2 border border-primary-500 text-sm leading-4 font-medium rounded-md text-primary-700 bg-white hover:text-primary-500 focus:outline-none focus:border-primary-300 focus:shadow-outline-blue active:text-primary-800 active:bg-gray-50 transition ease-in-out duration-150 hover:shadow"
-                      onClick={() => navigate(`/facility/${facility.id}`)}
+                      onClick={() =>
+                        navigate(`/facility/${facility.id}/resource/new`)
+                      }
                     >
-                      {t("View Facility")}
+                      {t("Select Facility")}
                     </button>
                   </span>
                 </div>

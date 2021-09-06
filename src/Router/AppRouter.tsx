@@ -84,7 +84,7 @@ const routes = {
     patientId,
     sampleId,
   }: any) => <SampleReport id={patientId} sampleId={sampleId} />,
-  // "/facility": () => {<HospitalList />},
+  "/facility": () => <HospitalList />,
   // "/facility/create": () => <FacilityCreate />,
   // "/facility/:facilityId/update": ({ facilityId }: any) => (
   //   <FacilityCreate facilityId={facilityId} />
@@ -92,9 +92,9 @@ const routes = {
   // "/facility/:facilityId": ({ facilityId }: any) => (
   //   <FacilityHome facilityId={facilityId} />
   // ),
-  // "/facility/:facilityId/resource/new": ({ facilityId }: any) => (
-  //   <ResourceCreate facilityId={facilityId} />
-  // ),
+  "/facility/:facilityId/resource/new": ({ facilityId }: any) => (
+    <ResourceCreate facilityId={facilityId} />
+  ),
   // "/facility/:facilityId/triage": ({ facilityId }: any) => (
   //   <TriageForm facilityId={facilityId} />
   // ),

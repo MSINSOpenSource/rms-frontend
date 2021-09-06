@@ -100,6 +100,13 @@ export default function BoardView() {
             onClick={triggerDownload}
           />
         </div>
+        <button
+          className="btn btn-primary"
+          onClick={() => navigate("/facility")}
+        >
+          <i className="fas fa-dolly-flatbed text-white mr-2" />
+          Resource Request
+        </button>
         <div className="bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex w-32">
           <button
             className={
