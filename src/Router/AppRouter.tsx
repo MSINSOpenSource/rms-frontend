@@ -57,10 +57,10 @@ import { AddLocationForm } from "../Components/Facility/AddLocationForm";
 import { LocationManagement } from "../Components/Facility/LocationManagement";
 import AssetsList from "../Components/Assets/AssetsList";
 import AssetManage from "../Components/Assets/AssetManage";
+import img from "../Common/mahakavach/MSInS_logo_white.png";
 import { DailyRoundListDetails } from "../Components/Patient/DailyRoundListDetails";
 
 const get = require("lodash.get");
-const img = "https://cdn.coronasafe.network/light-logo.svg";
 const logoBlack = "https://cdn.coronasafe.network/black-logo.svg";
 
 const routes = {
@@ -69,7 +69,7 @@ const routes = {
       <VentilatorParametersEditor />
     </>
   ),
-  "/": () => <HospitalList />,
+  "/": () => <AssetsList />,
   "/users": () => <ManageUsers />,
   "/user/add": () => <UserAdd />,
   "/user/profile": () => <UserProfile />,
@@ -85,224 +85,224 @@ const routes = {
     sampleId,
   }: any) => <SampleReport id={patientId} sampleId={sampleId} />,
   "/facility": () => <HospitalList />,
-  "/facility/create": () => <FacilityCreate />,
-  "/facility/:facilityId/update": ({ facilityId }: any) => (
-    <FacilityCreate facilityId={facilityId} />
-  ),
-  "/facility/:facilityId": ({ facilityId }: any) => (
-    <FacilityHome facilityId={facilityId} />
-  ),
+  // "/facility/create": () => <FacilityCreate />,
+  // "/facility/:facilityId/update": ({ facilityId }: any) => (
+  //   <FacilityCreate facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId": ({ facilityId }: any) => (
+  //   <FacilityHome facilityId={facilityId} />
+  // ),
   "/facility/:facilityId/resource/new": ({ facilityId }: any) => (
     <ResourceCreate facilityId={facilityId} />
   ),
-  "/facility/:facilityId/triage": ({ facilityId }: any) => (
-    <TriageForm facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/bed": ({ facilityId }: any) => (
-    <BedCapacityForm facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/doctor": ({ facilityId }: any) => (
-    <DoctorCapacityForm facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/patients": ({ facilityId }: any) => (
-    <PatientManager facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/patient": ({ facilityId }: any) => (
-    <PatientRegister facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/patient/:id": ({ facilityId, id }: any) => (
-    <PatientHome facilityId={facilityId} id={id} />
-  ),
-  "/facility/:facilityId/patient/:id/update": ({ facilityId, id }: any) => (
-    <PatientRegister facilityId={facilityId} id={id} />
-  ),
-  "/facility/:facilityId/patient/:patientId/sample-test": ({
-    facilityId,
-    patientId,
-  }: any) => <SampleTest facilityId={facilityId} patientId={patientId} />,
-  "/facility/:facilityId/patient/:patientId/sample/:id": ({ id }: any) => (
-    <SampleDetails id={id} />
-  ),
-  "/facility/:facilityId/patient/:patientId/notes/": ({
-    facilityId,
-    patientId,
-  }: any) => <PatientNotes patientId={patientId} facilityId={facilityId} />,
-  "/facility/:facilityId/patient/:patientId/files/": ({
-    facilityId,
-    patientId,
-  }: any) => (
-    <FileUpload
-      patientId={patientId}
-      facilityId={facilityId}
-      consultationId=""
-      type="PATIENT"
-      hideBack={false}
-      audio={true}
-      unspecified={true}
-    />
-  ),
-  "/facility/:facilityId/triage/:id": ({ facilityId, id }: any) => (
-    <TriageForm facilityId={facilityId} id={id} />
-  ),
-  "/facility/:facilityId/bed/:id": ({ facilityId, id }: any) => (
-    <BedCapacityForm facilityId={facilityId} id={id} />
-  ),
-  "/facility/:facilityId/doctor/:id": ({ facilityId, id }: any) => (
-    <DoctorCapacityForm facilityId={facilityId} id={id} />
-  ),
-  "/facility/:facilityId/patient/:patientId/consultation": ({
-    facilityId,
-    patientId,
-  }: any) => <ConsultationForm facilityId={facilityId} patientId={patientId} />,
-  "/facility/:facilityId/patient/:patientId/consultation/:id/update": ({
-    facilityId,
-    patientId,
-    id,
-  }: any) => (
-    <ConsultationForm facilityId={facilityId} patientId={patientId} id={id} />
-  ),
-  "/facility/:facilityId/patient/:patientId/consultation/:id/files/": ({
-    facilityId,
-    patientId,
-    id,
-  }: any) => (
-    <FileUpload
-      facilityId={facilityId}
-      patientId={patientId}
-      consultationId={id}
-      type="CONSULTATION"
-      hideBack={false}
-      audio={true}
-      unspecified={true}
-    />
-  ),
-  "/facility/:facilityId/patient/:patientId/consultation/:id/investigation/": ({
-    facilityId,
-    patientId,
-    id,
-  }: any) => (
-    <Investigation
-      consultationId={id}
-      facilityId={facilityId}
-      patientId={patientId}
-    />
-  ),
-  "/facility/:facilityId/patient/:patientId/consultation/:id/investigation/:sessionId":
-    ({ facilityId, patientId, id, sessionId }: any) => (
-      <ShowInvestigation
-        consultationId={id}
-        facilityId={facilityId}
-        patientId={patientId}
-        sessionId={sessionId}
-      />
-    ),
-  "/facility/:facilityId/patient/:patientId/consultation/:id/daily-rounds": ({
-    facilityId,
-    patientId,
-    id,
-  }: any) => (
-    <DailyRounds
-      facilityId={facilityId}
-      patientId={patientId}
-      consultationId={id}
-    />
-  ),
-  "/facility/:facilityId/patient/:patientId/consultation/:consultationId/daily-rounds/:id/update":
-    ({ facilityId, patientId, consultationId, id }: any) => (
-      <DailyRounds
-        facilityId={facilityId}
-        patientId={patientId}
-        consultationId={consultationId}
-        id={id}
-      />
-    ),
-  "/facility/:facilityId/patient/:patientId/consultation/:consultationId/daily-rounds/:id":
-    ({ facilityId, patientId, consultationId, id }: any) => (
-      <DailyRoundListDetails
-        facilityId={facilityId}
-        patientId={patientId}
-        consultationId={consultationId}
-        id={id}
-      />
-    ),
+  // "/facility/:facilityId/triage": ({ facilityId }: any) => (
+  //   <TriageForm facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/bed": ({ facilityId }: any) => (
+  //   <BedCapacityForm facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/doctor": ({ facilityId }: any) => (
+  //   <DoctorCapacityForm facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/patients": ({ facilityId }: any) => (
+  //   <PatientManager facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/patient": ({ facilityId }: any) => (
+  //   <PatientRegister facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/patient/:id": ({ facilityId, id }: any) => (
+  //   <PatientHome facilityId={facilityId} id={id} />
+  // ),
+  // "/facility/:facilityId/patient/:id/update": ({ facilityId, id }: any) => (
+  //   <PatientRegister facilityId={facilityId} id={id} />
+  // ),
+  // "/facility/:facilityId/patient/:patientId/sample-test": ({
+  //   facilityId,
+  //   patientId,
+  // }: any) => <SampleTest facilityId={facilityId} patientId={patientId} />,
+  // "/facility/:facilityId/patient/:patientId/sample/:id": ({ id }: any) => (
+  //   <SampleDetails id={id} />
+  // ),
+  // "/facility/:facilityId/patient/:patientId/notes/": ({
+  //   facilityId,
+  //   patientId,
+  // }: any) => <PatientNotes patientId={patientId} facilityId={facilityId} />,
+  // "/facility/:facilityId/patient/:patientId/files/": ({
+  //   facilityId,
+  //   patientId,
+  // }: any) => (
+  //   <FileUpload
+  //     patientId={patientId}
+  //     facilityId={facilityId}
+  //     consultationId=""
+  //     type="PATIENT"
+  //     hideBack={false}
+  //     audio={true}
+  //     unspecified={true}
+  //   />
+  // ),
+  // "/facility/:facilityId/triage/:id": ({ facilityId, id }: any) => (
+  //   <TriageForm facilityId={facilityId} id={id} />
+  // ),
+  // "/facility/:facilityId/bed/:id": ({ facilityId, id }: any) => (
+  //   <BedCapacityForm facilityId={facilityId} id={id} />
+  // ),
+  // "/facility/:facilityId/doctor/:id": ({ facilityId, id }: any) => (
+  //   <DoctorCapacityForm facilityId={facilityId} id={id} />
+  // ),
+  // "/facility/:facilityId/patient/:patientId/consultation": ({
+  //   facilityId,
+  //   patientId,
+  // }: any) => <ConsultationForm facilityId={facilityId} patientId={patientId} />,
+  // "/facility/:facilityId/patient/:patientId/consultation/:id/update": ({
+  //   facilityId,
+  //   patientId,
+  //   id,
+  // }: any) => (
+  //   <ConsultationForm facilityId={facilityId} patientId={patientId} id={id} />
+  // ),
+  // "/facility/:facilityId/patient/:patientId/consultation/:id/files/": ({
+  //   facilityId,
+  //   patientId,
+  //   id,
+  // }: any) => (
+  //   <FileUpload
+  //     facilityId={facilityId}
+  //     patientId={patientId}
+  //     consultationId={id}
+  //     type="CONSULTATION"
+  //     hideBack={false}
+  //     audio={true}
+  //     unspecified={true}
+  //   />
+  // ),
+  // "/facility/:facilityId/patient/:patientId/consultation/:id/investigation/": ({
+  //   facilityId,
+  //   patientId,
+  //   id,
+  // }: any) => (
+  //   <Investigation
+  //     consultationId={id}
+  //     facilityId={facilityId}
+  //     patientId={patientId}
+  //   />
+  // ),
+  // "/facility/:facilityId/patient/:patientId/consultation/:id/investigation/:sessionId":
+  //   ({ facilityId, patientId, id, sessionId }: any) => (
+  //     <ShowInvestigation
+  //       consultationId={id}
+  //       facilityId={facilityId}
+  //       patientId={patientId}
+  //       sessionId={sessionId}
+  //     />
+  //   ),
+  // "/facility/:facilityId/patient/:patientId/consultation/:id/daily-rounds": ({
+  //   facilityId,
+  //   patientId,
+  //   id,
+  // }: any) => (
+  //   <DailyRounds
+  //     facilityId={facilityId}
+  //     patientId={patientId}
+  //     consultationId={id}
+  //   />
+  // ),
+  // "/facility/:facilityId/patient/:patientId/consultation/:consultationId/daily-rounds/:id/update":
+  //   ({ facilityId, patientId, consultationId, id }: any) => (
+  //     <DailyRounds
+  //       facilityId={facilityId}
+  //       patientId={patientId}
+  //       consultationId={consultationId}
+  //       id={id}
+  //     />
+  //   ),
+  // "/facility/:facilityId/patient/:patientId/consultation/:consultationId/daily-rounds/:id":
+  //   ({ facilityId, patientId, consultationId, id }: any) => (
+  //     <DailyRoundListDetails
+  //       facilityId={facilityId}
+  //       patientId={patientId}
+  //       consultationId={consultationId}
+  //       id={id}
+  //     />
+  //   ),
 
-  "/facility/:facilityId/patient/:patientId/consultation/:consultationId/daily_rounds/:id":
-    ({ facilityId, patientId, consultationId, id }: any) => (
-      <CriticalCareRecording
-        facilityId={facilityId}
-        patientId={patientId}
-        consultationId={consultationId}
-        id={id}
-        preview={true}
-      />
-    ),
-  "/facility/:facilityId/patient/:patientId/consultation/:consultationId/daily_rounds/:id/update":
-    ({ facilityId, patientId, consultationId, id }: any) => (
-      <CriticalCareRecording
-        facilityId={facilityId}
-        patientId={patientId}
-        consultationId={consultationId}
-        id={id}
-        preview={false}
-      />
-    ),
-  "/facility/:facilityId/patient/:patientId/shift/new": ({
-    facilityId,
-    patientId,
-    id,
-  }: any) => <ShiftCreate facilityId={facilityId} patientId={patientId} />,
-  "/facility/:facilityId/inventory": ({ facilityId }: any) => (
-    <InventoryList facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/location": ({ facilityId }: any) => (
-    <LocationManagement facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/inventory/add": ({ facilityId }: any) => (
-    <AddInventoryForm facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/location/add": ({ facilityId }: any) => (
-    <AddLocationForm facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/inventory/min_quantity/set": ({ facilityId }: any) => (
-    <SetInventoryForm facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/inventory/:inventoryId": ({
-    facilityId,
-    inventoryId,
-  }: any) => <InventoryLog facilityId={facilityId} inventoryId={inventoryId} />,
-  "/facility/:facilityId/inventory/min_quantity/list": ({
-    facilityId,
-  }: any) => <MinQuantityList facilityId={facilityId} />,
-  "/facility/:facilityId/inventory/:inventoryId/update/:itemId": ({
-    facilityId,
-    inventoryId,
-    itemId,
-  }: any) => (
-    <UpdateMinQuantity
-      facilityId={facilityId}
-      inventoryId={inventoryId}
-      itemId={itemId}
-    />
-  ),
-  "/facility/:facilityId/assets/new": ({ facilityId }: any) => (
-    <AssetCreate facilityId={facilityId} />
-  ),
-  "/facility/:facilityId/assets/:assetId": ({ facilityId, assetId }: any) => (
-    <AssetCreate facilityId={facilityId} assetId={assetId} />
-  ),
+  // "/facility/:facilityId/patient/:patientId/consultation/:consultationId/daily_rounds/:id":
+  //   ({ facilityId, patientId, consultationId, id }: any) => (
+  //     <CriticalCareRecording
+  //       facilityId={facilityId}
+  //       patientId={patientId}
+  //       consultationId={consultationId}
+  //       id={id}
+  //       preview={true}
+  //     />
+  //   ),
+  // "/facility/:facilityId/patient/:patientId/consultation/:consultationId/daily_rounds/:id/update":
+  //   ({ facilityId, patientId, consultationId, id }: any) => (
+  //     <CriticalCareRecording
+  //       facilityId={facilityId}
+  //       patientId={patientId}
+  //       consultationId={consultationId}
+  //       id={id}
+  //       preview={false}
+  //     />
+  //   ),
+  // "/facility/:facilityId/patient/:patientId/shift/new": ({
+  //   facilityId,
+  //   patientId,
+  //   id,
+  // }: any) => <ShiftCreate facilityId={facilityId} patientId={patientId} />,
+  // "/facility/:facilityId/inventory": ({ facilityId }: any) => (
+  //   <InventoryList facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/location": ({ facilityId }: any) => (
+  //   <LocationManagement facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/inventory/add": ({ facilityId }: any) => (
+  //   <AddInventoryForm facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/location/add": ({ facilityId }: any) => (
+  //   <AddLocationForm facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/inventory/min_quantity/set": ({ facilityId }: any) => (
+  //   <SetInventoryForm facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/inventory/:inventoryId": ({
+  //   facilityId,
+  //   inventoryId,
+  // }: any) => <InventoryLog facilityId={facilityId} inventoryId={inventoryId} />,
+  // "/facility/:facilityId/inventory/min_quantity/list": ({
+  //   facilityId,
+  // }: any) => <MinQuantityList facilityId={facilityId} />,
+  // "/facility/:facilityId/inventory/:inventoryId/update/:itemId": ({
+  //   facilityId,
+  //   inventoryId,
+  //   itemId,
+  // }: any) => (
+  //   <UpdateMinQuantity
+  //     facilityId={facilityId}
+  //     inventoryId={inventoryId}
+  //     itemId={itemId}
+  //   />
+  // ),
+  // "/facility/:facilityId/assets/new": ({ facilityId }: any) => (
+  //   <AssetCreate facilityId={facilityId} />
+  // ),
+  // "/facility/:facilityId/assets/:assetId": ({ facilityId, assetId }: any) => (
+  //   <AssetCreate facilityId={facilityId} assetId={assetId} />
+  // ),
   "/assets": () => <AssetsList />,
   "/assets/:assetId": ({ assetId }: any) => <AssetManage assetId={assetId} />,
 
-  "/shifting": () =>
-    localStorage.getItem("defaultShiftView") === "list" ? (
-      <ShiftListView />
-    ) : (
-      <ShiftBoardView />
-    ),
-  "/shifting/board-view": () => <ShiftBoardView />,
-  "/shifting/list-view": () => <ShiftListView />,
-  "/shifting/:id": ({ id }: any) => <ShiftDetails id={id} />,
-  "/shifting/:id/update": ({ id }: any) => <ShiftDetailsUpdate id={id} />,
+  // "/shifting": () =>
+  //   localStorage.getItem("defaultShiftView") === "list" ? (
+  //     <ShiftListView />
+  //   ) : (
+  //     <ShiftBoardView />
+  //   ),
+  // "/shifting/board-view": () => <ShiftBoardView />,
+  // "/shifting/list-view": () => <ShiftListView />,
+  // "/shifting/:id": ({ id }: any) => <ShiftDetails id={id} />,
+  // "/shifting/:id/update": ({ id }: any) => <ShiftDetailsUpdate id={id} />,
   "/resource": () =>
     localStorage.getItem("defaultResourceView") === "list" ? (
       <ResourceListView />
@@ -314,76 +314,76 @@ const routes = {
   "/resource/list-view": () => <ResourceListView />,
   "/resource/:id": ({ id }: any) => <ResourceDetails id={id} />,
   "/resource/:id/update": ({ id }: any) => <ResourceDetailsUpdate id={id} />,
-  "/external_results": () => <ResultList />,
-  "/external_results/upload": () => <ExternalResultUpload />,
-  "/external_results/:id": ({ id }: any) => <ResultItem id={id} />,
-  "/external_results/:id/update": ({ id }: any) => <ResultUpdate id={id} />,
-  "/death_report/:id": ({ id }: any) => <DeathReport id={id} />,
+  // "/external_results": () => <ResultList />,
+  // "/external_results/upload": () => <ExternalResultUpload />,
+  // "/external_results/:id": ({ id }: any) => <ResultItem id={id} />,
+  // "/external_results/:id/update": ({ id }: any) => <ResultUpdate id={id} />,
+  // "/death_report/:id": ({ id }: any) => <DeathReport id={id} />,
   "/notifications/:id": (id: any) => <ShowPushNotification external_id={id} />,
   "/notice_board/": () => <NoticeBoard />,
-  "/facility/:facilityId/patient/:patientId/consultation/:id": ({
-    facilityId,
-    patientId,
-    id,
-  }: any) => (
-    <ConsultationDetails
-      facilityId={facilityId}
-      patientId={patientId}
-      consultationId={id}
-      tab={"updates"}
-    />
-  ),
-  "/facility/:facilityId/patient/:patientId/consultation/:id/:tab": ({
-    facilityId,
-    patientId,
-    id,
-    tab,
-  }: any) => (
-    <ConsultationDetails
-      facilityId={facilityId}
-      patientId={patientId}
-      consultationId={id}
-      tab={tab}
-    />
-  ),
+  // "/facility/:facilityId/patient/:patientId/consultation/:id": ({
+  //   facilityId,
+  //   patientId,
+  //   id,
+  // }: any) => (
+  //   <ConsultationDetails
+  //     facilityId={facilityId}
+  //     patientId={patientId}
+  //     consultationId={id}
+  //     tab={"updates"}
+  //   />
+  // ),
+  // "/facility/:facilityId/patient/:patientId/consultation/:id/:tab": ({
+  //   facilityId,
+  //   patientId,
+  //   id,
+  //   tab,
+  // }: any) => (
+  //   <ConsultationDetails
+  //     facilityId={facilityId}
+  //     patientId={patientId}
+  //     consultationId={id}
+  //     tab={tab}
+  //   />
+  // ),
 };
 
 let menus = [
-  {
-    title: "Facilities",
-    link: "/facility",
-    icon: "fas fa-hospital",
-  },
-  {
-    title: "Patients",
-    link: "/patients",
-    icon: "fas fa-user-injured",
-  },
+  // {
+  //   title: "Facilities",
+  //   link: "/facility",
+  //   icon: "fas fa-hospital",
+  // },
+  // {
+  //   title: "Patients",
+  //   link: "/patients",
+  //   icon: "fas fa-user-injured",
+  // },
   {
     title: "Assets",
     link: "/assets",
     icon: "fas fa-shopping-cart",
   },
-  {
-    title: "Sample Test",
-    link: "/sample",
-    icon: "fas fa-medkit",
-  },
-  {
-    title: "Shifting",
-    link: "/shifting",
-    icon: "fas fa-ambulance",
-  },
+  // {
+  //   title: "Sample Test",
+  //   link: "/sample",
+  //   icon: "fas fa-medkit",
+  // },
+  // {
+  //   title: "Shifting",
+  //   link: "/shifting",
+  //   icon: "fas fa-ambulance",
+  // },
   {
     title: "Resource",
     link: "/resource",
     icon: "fas fa-heartbeat",
   },
-  {
-    title: "External Results",
-    link: "/external_results",
-    icon: "fas fa-vials",
-  },
+  // {
+  //   title: "External Results",
+  //   link: "/external_results",
+  //   icon: "fas fa-vials",
+  // },
   {
     title: "Users",
     link: "/users",
@@ -402,7 +402,7 @@ let menus = [
 ];
 
 const AppRouter = (props: any) => {
-  useRedirect("/", "/facility");
+  useRedirect("/", "/assets");
   const pages = useRoutes(routes);
   const path = usePath();
   const { t } = props;
@@ -456,7 +456,7 @@ const AppRouter = (props: any) => {
               </div>
               <div className="flex-shrink-0 flex items-center px-4">
                 <a href="/">
-                  <img className="h-8 w-auto" src={img} alt="care logo" />
+                  <img src={img} alt="msins logo" />
                 </a>
               </div>
               <div className="mt-5 flex-1 h-0 overflow-y-auto">
@@ -534,7 +534,10 @@ const AppRouter = (props: any) => {
 
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64 bg-primary-800 pt-5">
-          <div className="flex items-center flex-shrink-0 px-4">
+          <div
+            className="flex items-center flex-shrink-0 px-4"
+            style={{ height: "90px" }}
+          >
             <a href="/">
               <img className="h-8 w-auto" src={img} alt="care logo" />
             </a>
@@ -569,7 +572,7 @@ const AppRouter = (props: any) => {
               <NotificationsList />
               <a
                 key="dashboard"
-                href="http://dashboard.coronasafe.network/"
+                href="https://dashboard.mahakavach.in/"
                 target="_blank"
                 rel="noreferrer"
                 className="mt-2 group flex w-full items-center px-2 py-2 text-base leading-5 font-medium text-primary-300 rounded-md hover:text-white hover:bg-primary-700 focus:outline-none focus:bg-primary-900 transition ease-in-out duration-150"
